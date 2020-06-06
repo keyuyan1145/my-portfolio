@@ -17,7 +17,8 @@
  */
 function randomFact() {
   const facts =
-      ['Sometimes I get my age wrong.', 'I\'m learning to Chinese calligraphy.', 'I could speak 5 languages/dialects (technically).', 'A huge sports fan'];
+      ['Sometimes I get my age wrong.', 'I\'m learning to Chinese calligraphy.',
+       'I could speak 5 languages/dialects (technically).', 'A huge sports fan'];
 
   // Pick a random greeting.
   const displayFact = facts[Math.floor(Math.random() * facts.length)];
