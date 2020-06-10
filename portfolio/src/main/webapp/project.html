@@ -9,14 +9,15 @@
 </head>
 
 <body>
-	<div class="nav">
-		<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a class="active" href="project.html">Project</a></li>
-			<li><a href="experience.html">Experience</a></li>
-		</ul>
+	<div class="nav" id="mynav">
+		<a href="index.html">Home</a>
+		<a class="active" href="project.html">Projects</a>
+		<a href="experience.html">Experiences</a>
+		<a href="javascript:vohid(0);" class="icon" onclick="myFunction()">
+			<i class="fa fa-bars"></i>
+		</a>
 	</div>
-	<div class="proj">
+	<div class="content">
 		<h4>Database System for E-Commerce</h4>
 		<p><i>Spring 2020</i></p>
 		<p>
@@ -31,7 +32,7 @@
 		<h4>Web Server with TCP Protocol</h4>
 		<p><i>Spring 2020</i></p>
 		<p>
-			As a class assignment, I programmed a web server from scratch in C that allows 
+			I programmed a web server from scratch in C that allows 
 			up to 5 client connections. 
 			This server has two main pages: the home page and a form.
 			The home page is a html file with images.
