@@ -17,8 +17,8 @@
  */
 function randomFact() {
   const facts =
-      ['Sometimes I get my age wrong.', 'I\'m learning to Chinese calligraphy.',
-       'I could speak 5 languages/dialects (technically).', 'A huge sports fan'];
+      ['Sometimes I get my age wrong.', 'I\'m learning Chinese calligraphy.',
+       'I could speak 5 languages/dialects (technically).', 'I\'m a huge sports fan'];
 
   // Pick a random greeting.
   const displayFact = facts[Math.floor(Math.random() * facts.length)];
@@ -26,4 +26,16 @@ function randomFact() {
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = displayFact;
+}
+
+
+/* Toggle between adding and removing the "responsive" class to nav 
+ * when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("mynav");
+  if (x.className === "nav") {
+    x.className += " responsive";
+  } else {
+    x.className = "nav";
+  }
 }
