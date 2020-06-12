@@ -9,21 +9,27 @@
 </head>
 
 <body>
-	<div class="nav">
-		<ul>
-			<li><a class="active" href="index.html">Home</a></li>
-			<li><a href="project.html">Projects</a></li>
-			<li><a href="experience.html">Experiences</a></li>
-		</ul>
+	<div class="nav" id="mynav">
+		<a class="active" href="index.html">Home</a>
+		<a href="project.html">Projects</a>
+		<a href="experience.html">Experiences</a>
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+			<i class="fa fa-bars"></i>
+		</a>
 	</div>
 	<div class="profile">
-		<img class ="profilePic" src="/images/IMG_8092.jpg">
+		<img id ="profilePic" src="/images/IMG_8092.jpg">
 		<h3>Yuyan Ke</h3>
-		<a href="www.linkedin.com/in/yuyan-ke/">LinkedIn</a8></br>
-		<a href="mailto: keyuyan01@gmail.com">Email</a>
+		<a href="www.linkedin.com/in/yuyan-ke/">LinkedIn</a></br>
+		<a href="mailto: keyuyan01@gmail.com">Email</a><br>
 		<a href="https://github.com/keyuyan1145">GitHub</a>
 	</div>
 	<div class="content">
+		<div class="randomFact">
+			<h5>Click here to get a random message:</h5>
+			<button onclick="randomFact()">Facts About Me!!</button>
+			<div id="fact-container"></div>
+		</div>
 		<h2>About Me</h2>
 		<p>
 			Welcome to my portfolio!! I am a rising junior at 
@@ -63,9 +69,16 @@
 			Mu Alpha Theta National Mathematics Honors Society, 
 			National Honors Society, and Beta Club.
 		</p>
-		<h5>Click here to get a random message:</h5>
-		<button onclick="randomFact()">Facts About Me!!</button>
-		<div id="fact-container"></div>
+		<div class="skill">
+			<h4>Skill/Interest</h4>
+			<ul>
+				<li>Programming: Java, Python (Numpy, Pandas, Matplotlib, Flask),
+					C, C++, HTML, CSS</li>
+				<li>Tool: Linux, MacOS, Windows, Photoshop, Autodesk Fusion, Git</li>
+				<li>Language: Fluent Mandarin, beginner Spanish</li>
+				<li>Hobbies: Exercise, run, photography, Chinese calligraphy</li>
+			</ul>
+		</div>
 	</div>
 </body>
 
