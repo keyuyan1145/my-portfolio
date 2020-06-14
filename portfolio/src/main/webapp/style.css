@@ -2,7 +2,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
-  width: 650px;
+  width: 75%;
 }
 
 .projpic {
@@ -63,6 +63,7 @@
 /* Hide the link that should open and close the nav on small screens */
 .nav .icon {
   display: none;
+  font-size: 15px;
 }
 
 /* When the screen is less than 600 pixels wide, hide all links, 
