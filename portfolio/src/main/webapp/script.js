@@ -74,8 +74,16 @@ function addToDom(message) {
 }
 
 // async version of the get HellowMessage
-async function getHelloMessageAwait() {
+async function getHelloAwait() {
   const response = await fetch('/data');
   const message = await response.text();
   document.getElementById('message-container').innerText = message;
+}
+
+// parsing & fetching json messages
+async function getMessage() {
+  const response = await fetch('/data');
+  const messages = await response.json();
+  const element = document.getElementById('json-messages-container');
+  element.innerText = messages;
 }
