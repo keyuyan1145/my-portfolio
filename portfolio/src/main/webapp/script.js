@@ -81,9 +81,14 @@ async function getHelloAwait() {
 }
 
 // parsing & fetching json messages
-async function getMessage() {
+async function getComment() {
   const response = await fetch('/data');
-  const messages = await response.json();
-  const element = document.getElementById('json-messages-container');
-  element.innerText = messages;
+  const comments = await response.json();
+  const element = document.getElementById('comment-container');
+  
+  comments.forEach((line) => {
+    const newComment = document.createElement('li');
+    newComment.innerText = line;
+    element.appendChild(newComment);
+  });
 }
