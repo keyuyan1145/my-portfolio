@@ -8,7 +8,7 @@
     <script src="script.js"></script>
   </head>
 
-  <body>
+  <body onload="getComment()">
     <div class="nav" id="mynav">
       <a class="active" href="index.html">Home</a>
       <a href="project.html">Projects</a>
@@ -26,9 +26,6 @@
       <p>Click here to get a HELLO!</p>
       <button onclick="getHello()">Hello!</button>
       <div id="message-container"></div>
-      <p>Click for JSON messages</p>
-      <button onclick="getMessage()">Messages!</button>
-      <div id="json-messages-container"></div>
       <div class="randomFact">
         <h5>Click here to get a random message:</h5>
         <button onclick="randomFact()">Facts About Me!!</button>
@@ -82,6 +79,15 @@
           <li>Language: Fluent Mandarin, beginner Spanish</li>
           <li>Hobbies: Exercise, run, photography, Chinese calligraphy</li>
         </ul>
+      </div>
+      <div class="comment">
+        <h4>Comments: </h4>
+        <ul id="comment-container"></ul>
+        <form action='/data' method='POST'>
+          <p>Leave your comment below: </p>
+          <textarea name="comment"></textarea></br>
+          <input type="submit">
+        </form>
       </div>
     </div>
   </body>
