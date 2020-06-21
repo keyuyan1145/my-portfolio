@@ -88,7 +88,8 @@ async function getComment() {
   
   comments.forEach((line) => {
     const newComment = document.createElement('li');
-    newComment.innerText = line;
+    newComment.innerText = line.date + " : " + line.name + " said " 
+                            + line.comment;
     element.appendChild(newComment);
   });
 }
