@@ -82,17 +82,12 @@
       </div>
       <div class="comment">
         <h4>Comments: </h4>
-        <table id="comment-container"></table>
-            <tr>
-                <td> Date </td>
-                <td> Name </td>
-                <td> Comment </td>
-            </tr>
-        </table>
+        <ul id="comment-container"></ul>
         <form action='/data' method='POST' class="comment-form">
           <p>Leave your comment below: </p>
           <Label for="name">Your name: </label>
           <input name="name" type="text">
+          <br><br>
           <label for="comment"> Comment: </label>
           <textarea name="comment"></textarea></br>
           <input type="submit">
