@@ -17,6 +17,9 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*; 
 import com.google.gson.Gson;
+import com.google.sps.data.Comment;
 
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
@@ -51,15 +55,27 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //String json = convertToGson(comments);
 
-    //response.setContentType("application/json;");
-    //response.getWriter().println(json);
-  }
+    Query query = new Query("comment").addSort("date", SortDirection.DESCENDING);
+    
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery result = datastore.prepare(query);
 
-  private String convertToGson(ArrayList comments) {
+    List<Comment> commentList = new ArrayList<>();
+
+    for (Entity entity : result.asIterable()) {
+      String name = (String) entity.getProperty("name");
+      String comment = (String) entity.getProperty("comment");
+      Date date = (Date) entity.getProperty("date");
+
+      Comment commentObj = new Comment(name, comment, date);
+      commentList.add(commentObj);
+    }
+
     Gson gson = new Gson();
-    String json = gson.toJson(comments);
-    return json;
+
+    response.setContentType("application/json;");
+    response.getWriter().println(gson.toJson(commentList));
   }
+
 }
