@@ -38,3 +38,17 @@ function myFunction() {
     x.className = "nav";
   }
 }
+
+/** parsing & fetching json messages */
+async function getComment() {
+  const response = await fetch('/data');
+  const comments = await response.json();
+  const element = document.getElementById('comment-container');
+  
+  comments.forEach((line) => {
+    const newComment = document.createElement('li');
+    newComment.innerText = line.date + " : " + line.name + " said " 
+                            + line.comment;
+    element.appendChild(newComment);
+  });
+}
