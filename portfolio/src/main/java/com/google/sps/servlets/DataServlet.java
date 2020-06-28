@@ -20,6 +20,9 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
 import java.io.IOException;
@@ -62,10 +65,19 @@ public class DataServlet extends HttpServlet {
 
     List<Comment> commentList = new ArrayList<>();
 
+    String languageCode = request.getHeader("languageCode");
+    Translate translate = TranslateOptions.getDefaultInstance().getService();
+
     for (Entity entity : result.asIterable()) {
-      String name = (String) entity.getProperty("name");
-      String comment = (String) entity.getProperty("comment");
       Date date = (Date) entity.getProperty("date");
+
+      Translation transName =
+        translate.translate((String) entity.getProperty("name"), Translate.TranslateOption.targetLanguage(languageCode));
+      String name = transName.getTranslatedText();
+      
+      Translation transComment =
+        translate.translate((String) entity.getProperty("comment"), Translate.TranslateOption.targetLanguage(languageCode));
+      String comment = transComment.getTranslatedText();
 
       Comment commentObj = new Comment(name, comment, date);
       commentList.add(commentObj);
@@ -73,7 +85,8 @@ public class DataServlet extends HttpServlet {
 
     Gson gson = new Gson();
 
-    response.setContentType("application/json;");
+    response.setContentType("application/json; charset=UTF-8");
+    response.setCharacterEncoding("UTF-8");
     response.getWriter().println(gson.toJson(commentList));
   }
 
