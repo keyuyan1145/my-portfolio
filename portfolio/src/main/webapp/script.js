@@ -17,8 +17,8 @@
  */
 function randomFact() {
   const facts =
-      ['Sometimes I get my age wrong.', 'I\'m learning Chinese calligraphy.',
-       'I could speak 5 languages/dialects (technically).', 'I\'m a huge sports fan'];
+    ['Sometimes I get my age wrong.', 'I\'m learning Chinese calligraphy.',
+      'I could speak 5 languages/dialects (technically).', 'I\'m a huge sports fan'];
 
   // Pick a random greeting.
   const displayFact = facts[Math.floor(Math.random() * facts.length)];
@@ -39,16 +39,35 @@ function myFunction() {
   }
 }
 
+// default language = English
+var languageCode = "en";
+
 /** parsing & fetching json messages */
 async function getComment() {
-  const response = await fetch('/data');
+  const params = new URLSearchParams();
+  params.append('languageCode', languageCode);
+
+  const response = await fetch('/data', {method:'GET', headers:params});
   const comments = await response.json();
-  const element = document.getElementById('comment-container');
-  
+  const table = document.getElementById('comment-container');
+
+  // remove previous comments in another language
+  for (i = table.rows.length-1; i > 0; i--) {  
+    table.deleteRow(i);
+  }
+
   comments.forEach((line) => {
-    const newComment = document.createElement('li');
-    newComment.innerText = line.date + " : " + line.name + " said " 
-                            + line.comment;
-    element.appendChild(newComment);
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    cell1.innerHTML = line.date;
+    cell2.innerHTML = line.name;
+    cell3.innerHTML = line.comment;
   });
+}
+
+function getTranslation() {
+  languageCode = document.getElementById('language').value;
+  getComment();
 }

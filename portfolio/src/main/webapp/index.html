@@ -79,7 +79,23 @@
       </div>
       <div class="comment">
         <h4>Comments:</h4>
-        <ul id="comment-container"></ul>
+        <div class="translateLang">
+          <select id="language">
+            <option value="en">English</option>
+            <option value="zh">Chinese</option>
+            <option value="es">Spanish</option>
+            <option value="hi">Hindi</option>
+            <option value="ar">Arabic</option>
+          </select>
+          <button onclick="getTranslation()">Translate</button>
+        </div>
+        <table id="comment-container">
+            <tr>
+                <td>Date</td>
+                <td>Name</td>
+                <td>Comment</td>
+            </tr>
+        </table>
         <form action='/data' method='POST' class="comment-form">
           <p>Leave your comment below:</p>
           <Label for="name">Your name: </label>
